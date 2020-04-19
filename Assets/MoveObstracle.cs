@@ -10,24 +10,16 @@ public class MoveObstracle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("moving obstracle bool " + isMoveRight);
-        Debug.Log("moving obstracle position " + rigidBody.position.x);
-        if (isMoveRight)
-        {
-              
+        if (isMoveRight){
             rigidBody.AddForce(sideMovementSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        } else
-        {
+        } else {
             rigidBody.AddForce(-sideMovementSpeed * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
 
-        if(rigidBody.position.x >= moveDistance)
-        {
+        if(rigidBody.position.x >= moveDistance){
             isMoveRight = false;
             Debug.Log("moving right");
-        }
-        else if(rigidBody.position.x <= -moveDistance)
-        {
+        } else if(rigidBody.position.x <= -moveDistance){
             Debug.Log("moving left");
             isMoveRight = true;
         }
