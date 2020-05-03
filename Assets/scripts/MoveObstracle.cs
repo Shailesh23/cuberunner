@@ -18,9 +18,7 @@ public class MoveObstracle : MonoBehaviour
 
         if(rigidBody.position.x >= moveDistance){
             isMoveRight = false;
-            Debug.Log("moving right");
         } else if(rigidBody.position.x <= -moveDistance){
-            Debug.Log("moving left");
             isMoveRight = true;
         }
     }

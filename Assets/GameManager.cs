@@ -1,11 +1,14 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
     public float restartTime = 1f;
     public GameObject completeLevelUI;
+    public Text coinCaptured;
+    private int coinCounter = 0;
 
     public void GameOver()
     {
@@ -19,6 +22,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void CoinCaptured()
+    {
+        //update coin counter score
+        coinCounter++;
+        coinCaptured.text = coinCounter.ToString();
+    }
+
     void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -26,17 +36,18 @@ public class GameManager : MonoBehaviour
     
     void LoadNextScene()
     {
+        completeLevelUI.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    void CloseGame()
+    public void CloseGame()
     {
         Application.Quit();
     }
 
     public void CompleteLevel()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 2) {
+        if(SceneManager.GetActiveScene().buildIndex == 0) {
             completeLevelUI.SetActive(true);
             Debug.Log("last level compelted");
             Invoke("CloseGame", restartTime);
